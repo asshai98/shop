@@ -1,0 +1,22 @@
+{% extends "_global/index.html" %}
+{% block main %}
+
+<div class="form-setup">
+<form action="/user/login" method="POST">
+    <label for="input_username" class="uname"> Username: </label><br>
+    <input type="text" id="input_username" name="login_username" required><br> 
+
+    <label for="input_password" class="lpassword"> Password: </label><br>
+    <input type="password" id="input_password" name="login_password" required><br>
+
+    <div class="buttons">
+        <button type="sumbit" id="sumbit"> LOGIN </button>
+    </div>
+
+</form>
+
+<p class="p-register-1"> Don't have an account? </p>
+<p class="p-register-2"> Click here to register for free: </p>
+<a href="/user/register" class="reg-link"> Register </a>
+</div>
+{% endblock %} 

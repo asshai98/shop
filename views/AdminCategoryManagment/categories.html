@@ -1,0 +1,22 @@
+{% extends "_global/index.html" %}
+{% block main %}
+<div class="admin-categories">
+    <p class="add-paragraph-1"> Too add new categories click here: </p> 
+    <a href="/admin/categories/add" class="cat"> Add </a>
+
+    <p class="list-of-items"> To view currently avilable items click here: </p> 
+    <a href="/admin/items" class="items-list"> View </a>
+
+    <div class="image-deco-holder">
+        <img src="/assets/img/deco2.png">
+    </div>
+
+    <div class="view-categories">
+        {% for category in categories %} 
+            <a href="/admin/categories/edit/{{category.category_id}}" class="view-category">
+                {{ category.name|escape|title }} 
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

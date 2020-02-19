@@ -1,0 +1,47 @@
+{% extends "_global/index.html" %}
+{% block main %}
+
+<div class="item-info">
+    <div class="item-image">
+        <img src="/assets/img/shop-img-1.png" alt="item-image">
+    </div>
+    <div class="object-title">
+        <p> {{ item.name|escape }}</p>
+    </div>
+    <div class="item-desc">
+        <p> {{ item.description }}</p>
+    </div>
+    <div class="object-price">
+        <p> Price: {{ item.price }} &euro; </p>
+    </div>
+    <form method = "post" action="#" class="form-sumbit">
+        <button type="submit" class="sumbit" class="buy"> <a href="/item/buy/{{item.item_id}}">Buy</a> </button>
+    </form>
+</div>
+<div class="reviews">
+    <p class="main"> Reviews </p>
+    <p class="second"> There are no reviews yet.</p>
+    <p class="third"> Be the first to review “Bravo Echo Charlie”</p>
+    <p class="forth"> Your email address will not be published. Required fields are marked *</p>
+    <p class="fifth"> Your rating </p>
+    <div class="five-star">
+        <img src="/assets/img/rate.png" alt="rate" class="rate">
+        <img src="/assets/img/rate.png" alt="rate" class="rate">
+        <img src="/assets/img/rate.png" alt="rate" class="rate">
+        <img src="/assets/img/rate.png" alt="rate" class="rate">
+        <img src="/assets/img/rate.png" alt="rate" class="rate">
+    </div>
+    <form method="post" action="#" class="review-form">
+        <p class="review">Your review * </p>
+        <textarea class="text-area" class="text-area"> </textarea>
+        <p class="name"> Name * </p>
+        <input type="text" name="name" class="fname">
+        <p class="email"> Email * </p>
+        <input type="text" name="email" class="emailf"> <br>
+        <button type="submit" class="buttonS"> SUMBIT </button>
+    </form>
+</div>
+
+{%endblock%}
+
+{%block naslov%} {{item.name|escape}} {%endblock%}

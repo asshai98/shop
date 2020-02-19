@@ -1,0 +1,38 @@
+{% extends "_global/index.html" %}
+{% block main %}
+    
+    <div class="text-sort">
+        <form class="sort-items">
+            <select name="orderby" class="orderby-select">
+                <option value="menu_order" selected="selected" class="option"> Default sorting</option>
+                <option value="rating" > Sort by average rating</option>
+                <option value="price-asc"> Sort by price: low to high</option>
+                <option value="popularity">Sort by popularity</option>
+            </select>
+        </form>
+    </div> 
+        <div class="products">
+            {%for item in items%}
+            <div class="item">
+                <div class="product-image"></div>
+                <div class="title-price">
+                    <a href="/item/{{ item.item_id }}" class="item-title">
+                        {{ item.name | escape }}
+                    </a> 
+                    <p class="item-price"> {{ item.price }} &euro;</p> 
+                </div>     
+            </div>           
+            {%endfor%}
+        </div>
+        <div class="paging">
+            {% if page > 1 %}
+            <a href="/category/{{ category.category_id }}/{{ page - 1}}">&laquo; {{ page - 1}}</a> |
+            {% endif %}
+
+            {{ page }} |
+
+            <a href="/category/{{ category.category_id }}/{{ page + 1}}">{{ page + 1}} &raquo;</a>
+
+        </div>
+{% endblock %} 
+{%block naslov%} {{ category.name|escape}} {%endblock%}

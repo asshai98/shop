@@ -1,0 +1,21 @@
+{% extends "_global/index.html" %}
+{% block main %}
+<div class="cart-items">
+    <div class="cart-item">
+    {% for row in content %}
+        <p class="cart-item-name"> {{row.name}} </p>
+        <p class="cart-item-price"> {{row.price}} </p>
+        <p class="cart-total-number"> {{row.number_of_items}} </p>
+        <p class="total-price">  {{row.total}} </p>
+         <a href="/user/cart/delete/{{row.item_id}}" class="delete-cart"> Delete </a>
+    {%endfor%}
+</div>
+<form method="post" action="/user/cart/order" class="cart-form"> 
+    <label for = "name" class="name"> Name </label> <br>
+    <input type = "text" id="name" name="name"> <br>
+    <label for = "address" class="adress"> Address </label> <br>
+    <input type = "text" id="address" name="address"> <br>
+    <button type="sumbit" class="button-sumbit"> Sumbit </button>
+</form>
+</div>
+{% endblock %} 

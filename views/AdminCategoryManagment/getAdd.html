@@ -1,0 +1,17 @@
+{% extends "_global/index.html" %}
+{% block main %}
+<div class="get-add">
+        <p class="return"> To return to category list click here: </p>
+        <a href="/admin/categories" class="category-list"> View categories </a>
+    
+    <form class="category-form" method="POST">
+        <label for="name" class="name"> Enter category name </label><br>
+        <input type="text" id="name" name="name" required> <br>
+
+        <label for="description" class="description"> Enter description </label> <br>
+        <input type="text" id="description" name="description" required> <br>
+
+        <button type="sumbit" class="button-sumbit"> ADD </button>
+    </form>
+</div>
+{% endblock %} 

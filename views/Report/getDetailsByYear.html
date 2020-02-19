@@ -1,0 +1,59 @@
+{% extends "_global/index.html" %}
+{% block main %}
+	<div class="export"> 
+        <span> To export data in JSON format click here:  </span>
+        <a href = "/admin/profile/viewYearDetails/{{currentYear}}/json/" target="_blank" id="export-link"> EXPORT </a>
+    </div><br>
+        <div class="quarter-header">
+            <p class="year"> Year: </p>
+            <select id="year-range" onchange="yearChanged()">
+                {%for year in years %}
+                <option {% if currentYear == year.year %} selected {% endif %} value="{{year.year}}"> {{year.year}} </option>
+                {% endfor %}
+            </select>
+        </div><br><br><br>
+    <canvas id="myChart"></canvas>
+<script src="/assets/Chart.js/Chart.bundle.min.js"></script>
+<link rel="stylesheet" href="/assets/Chart.js/Chart.min.css">
+<script>
+    
+		var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+		var color = Chart.helpers.color;
+		var barChartData = {
+			labels: MONTHS,
+			datasets: [{
+				label: 'Sales Per Month',
+				backgroundColor: "#5AC18E",
+				borderColor: "#f00",
+				borderWidth: 1,
+				data: JSON.parse('{{data|raw}}')
+			}]
+
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('myChart').getContext('2d');
+			window.myBar = new Chart(ctx, {
+				type: 'bar',
+				data: barChartData,
+				options: {
+					responsive: true,
+					legend: {
+						position: 'top',
+					},
+					title: {
+						display: false,
+						text: ''
+					}
+				}
+			});
+
+		};
+
+	    function yearChanged(){
+        let year = document.querySelector("#year-range option:checked").value;
+        window.location="/admin/profile/viewYearDetails/" + year;
+	}
+
+	</script>
+{% endblock %} 

@@ -1,0 +1,35 @@
+{% extends "_global/index.html" %}
+{% block main %}
+<div class="welcome-div">
+    <div class="welcome-top">
+        <p> Welcome To</p>
+    </div>
+    <div class="main-title">
+        <p> The Eldritch Shop </p>
+    </div>
+    <div class="deco-holder">
+        <img src="/assets/img/deco2.png" alt="decoration">
+    </div>
+</div>
+<div class="categories">
+    {% for category in categories %} 
+        <a href="/category/{{category.category_id}}" class="category">
+            <span>{{ category.name|escape|title }}</span>
+        </a>
+    {% endfor %}
+</div>
+
+<div class="contact-us">
+    <p class="title">
+        Do you have some questions or concernes?
+    </p>
+    <p class="subtitle">
+        Feel free to hit us up with your question!
+    </p>
+    <form method="post" action="#" class="contact-form">
+        <input type="text" name="ask" placeholder="Ask us anything!" class="field">
+        <button type="submit" class="button"> SEND </button>
+    </form>
+</div>
+
+{% endblock %} 

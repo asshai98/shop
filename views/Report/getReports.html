@@ -1,0 +1,18 @@
+{% extends "_global/index.html" %}
+{% block main %}
+<br><br>
+<div class = "reports">
+    <div class="year-report">
+        <a href="/admin/profile/viewYearDetails/2019"><img src="/assets/img/chart-1.png" alt="years" class="images"></a>
+        <p class="report-title"> View sales by year </p>
+    </div>
+    <div class="item-report">
+        <a href="/admin/profile/viewItemDetails/2019-11-27/2019-11-29"><img src="/assets/img/pie-1.png" alt="years"class="images"></a>
+        <p class="report-title"> View item reports by year </p>
+    </div>
+    <div class="buyer-report">
+        <a href="/admin/profile/viewBuyerDetails/2019"><img src="/assets/img/table.png" alt="years" class="images"></a>
+        <p class="report-title"> View top buyers by year </p>
+    </div>
+</div>
+{% endblock %} 

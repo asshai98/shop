@@ -1,0 +1,23 @@
+{% extends "_global/index.html" %}
+{% block main %}
+<div class = "get-item-add">
+    <p class="return-to-items"> To return to items list click here: </p>
+    <a href="/admin/items" class="view-items-1"> View all avilable items </a>
+    
+    <form class="item-form" method="POST">
+        <label for="name"> Enter item name </label><br>
+        <input type="text" id="name" name="name"> <br>
+
+        <label for="description"> Enter item description </label> <br>
+        <input type="text" id="description" name="description"> <br>
+
+        <label for="price"> Enter item price </label> <br>
+        <input type="text" id="price" name="price"  class="price"> <br>
+
+        <label for="catId"> Enter category identification </label> <br>
+        <input type="number" id="catId" name="catId"> <br>
+
+        <button type="sumbit" class="button-sumbit"> ADD </button>
+    </form>
+</div>
+{% endblock %} 

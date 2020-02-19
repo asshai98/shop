@@ -1,0 +1,22 @@
+{% extends "_global/index.html" %}
+{% block main %}
+<div class="get-item-edit">
+    <p class="view-item-1"> To go back to category list click here: </p>
+    <a href="/admin/items" class="view-items"> View all avilable items </a>
+    <p class="delete-item"> To delete this item click here: </p>
+    <a href="/admin/items/delete/{{item.item_id}}" onclick="return confirm('Do you really want to delete this item ?')" class="on-delete-item"> Delete </a>
+    
+    <form class="item-form" method="POST">
+        <label for="name" class="name"> Enter item name </label><br>
+        <input type="text" id="name" name="name"> <br>
+
+        <label for="description" class="description"> Enter item description </label> <br>
+        <input type="text" id="description" name="description"> <br>
+
+        <label for="price"> Enter item price </label> <br>
+        <input type="text" id="price" name="price" class="price"> <br>
+
+        <button type="sumbit" class="button-sumbit"> EDIT </button>
+    </form>
+</div>
+{% endblock %} 

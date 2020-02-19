@@ -1,0 +1,39 @@
+{% extends "_global/index.html" %}
+{% block main %}
+    <div class="export"> 
+        <span> To export data in JSON format click here: </span>
+        <a href = "/admin/profile/viewBuyerDetails/{{currYear}}/json/" target="_blank" id="export-link"> EXPORT </a>
+    </div><br>
+        <div class="quarter-header">
+            <span class="year"> Year: </span>
+            <select id="year" onchange="yearChanged()">
+                {%for year in years %}
+                <option {% if currYear == year.year %} selected {% endif %} value="{{year.year}}"> {{year.year}} </option>
+                {% endfor %}
+            </select>
+        </div><br><br>
+    <table class="buyer-view">
+        <tr>
+            <th>Username</th>
+            <th>Total</th>
+            <th>Amount</th>
+            <th>Email</th>
+        </tr>
+        {% for row in reports %}
+        <tr>
+            <td id="user-name"> {{row.username}} </td>
+            <td id="total-price"> {{row.total}} </td>
+            <td id="item-count"> {{row.amount}} </td>
+            <td id="user-email"> {{row.email}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        function yearChanged() {
+            let year = document.querySelector("#year option:checked").value;
+        window.location="/admin/profile/viewBuyerDetails/" + year;
+        }
+    </script>
+
+{% endblock %} 

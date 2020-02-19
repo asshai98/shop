@@ -1,0 +1,88 @@
+
+<!doctype html>
+<html>
+    <head>
+        <title> The Eldritch - {%block naslov%} Home {%endblock%} </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+    </head>
+    <body>
+        <div class="body-outer">
+            <div class="body-inner">
+                <header>
+                    <div class="banners">
+                        <a href="/" class="banner">
+                            <img src="/assets/img/logo.png" alt="Banner-logo">
+                        </a>
+                    </div>
+                    <div class="social-icons">
+                        <a href="//sr-rs.facebook.com/"><img src="/assets/img/icon1-1.png"></a>
+                        <a href="//www.youtube.com/?reload=9&hl=sr&gl=RS"> <img src="/assets/img/icon1-4.png"> </a>
+                        <a href="//aboutme.google.com/u/0/?referer=gplus"><img src="/assets/img/icon1-3.png">  </a>
+                        <a href="//twitter.com/?lang=sr"><img src="/assets/img/icon1-2.png">  </a>
+                    </div>
+                    <div class="search">
+                        <form method="post" action="#">
+                            <input tupe="text" name="q" placeholder="Shop search" class="text-field">
+                            <button type="submit" class="sumbit"> Search </button>
+                        </form>
+                    </div>
+                    <nav id="main-menu">
+                        <ul>
+                            <li><a href="/"> Home </a></li>
+                            <li><a href="/"> News </a></li>
+
+                            {%if role == 'ADMIN'%}
+                            <li><a href="/admin/reports"> Reports </a></li>
+                            {%endif%}
+
+                            {%if role == 'ADMIN'%}
+                            <li><a href="/admin/categories"> Edit content </a></li>
+                            {%endif%}
+
+                            {%if role == 'USER'%}
+                            <li><a href="/user/cart"> View cart ({{cartItemCount}})</a></li>
+                            {%endif%}
+                          
+                            {%if role != 'VISITOR'%}
+                            <li><a href="/user/logout"> Logout </a></li> 
+                            {% else  %}                           
+                            <li><a href="/user/login"> User Login </a></li> 
+                            <li><a href="/admin/login"> Admin Login </a></li> 
+                            {%endif%}
+                        </ul>
+                    </nav>
+                    {% if breadcrums %}
+                        <div class="breadcrums">
+                        {%for breadcrum in breadcrums %}
+                            {% if breadcrum.last != true %}
+                                &raquo; <a href="{{ breadcrum.link }}" class="breadcrum-link">{{ breadcrum.label }}</a>
+                            {% else %}
+                                &raquo; <span>{{ breadcrum.label }}</span>
+                            {% endif %}
+                        {% endfor %}
+                        </div><br><br>
+                    {% endif %}
+                </header>
+                <main>
+                    {% if messages %}
+                    {%for message in messages%}
+                    {%if role != 'VISITOR'%}
+                    <div class="message">
+                        {{message}}
+                    </div>
+                    {%endif%}
+                    {%endfor%}
+                    {%endif%}
+
+                    {%block main%}
+                    {%endblock%}
+                </main>
+                <footer>
+                    <p>&copy; 2019 - Web informacioni sistemi </p>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>

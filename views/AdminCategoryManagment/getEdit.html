@@ -1,0 +1,19 @@
+{% extends "_global/index.html" %}
+{% block main %}
+<div class="get-edit">
+    <p class="view-cat-1"> To go back to category list click here: </p>
+    <a href="/admin/categories" class="view"> View categories </a>
+    <p class="delete"> To delete this category click here: </p>
+    <a href="/admin/categories/delete/{{category.category_id}}" onclick="return confirm('Do you really want to delete this category?')" class="on-delete"> Delete </a>
+
+    <form class="category-form" method="POST">
+        <label for="name" class="name"> Enter category name </label><br>
+        <input type="text" id="name" name="name" value="{{category.name}}"> <br>
+
+        <label for="description" class="description"> Enter description </label> <br>
+        <input type="text" id="description" name="description" value="{{category.cat_desc}}"> <br>
+
+        <button type="sumbit" class="button-sumbit"> EDIT </button>
+    </form>
+</div>
+{% endblock %} 

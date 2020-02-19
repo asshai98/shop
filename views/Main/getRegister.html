@@ -1,0 +1,33 @@
+{% extends "_global/index.html" %}
+{% block main %}
+
+<div class="get-register">
+
+<form action="/user/register" method="POST">
+    <label for="input_email" class="email"> Email: </label> <br>
+    <input type="email" id="input_email" name="reg_email" required> <br>
+
+    <label for="input_forename" class="forename"> Forename </label><br>
+    <input type="text" id="input_forename" name="reg_forename" required> <br>
+
+    <label for="input_surname" class="surname"> Surname: </label><br>
+    <input type="text" id="input_surname" name="reg_surname" required> <br>
+
+    <label for="input_username" class="username"> Username: </label><br>
+    <input type="text" id="input_username" name="reg_username" required> <br>
+
+    <label for="input_password_1" class="passwd-1"> Password: </label><br>
+    <input type="password" id="input_password_1" name="reg_password_1" required> <br>
+
+    <label for="input_password_2" class="passwd-2"> Confirm password: </label><br>
+    <input type="password" id="input_password_2" name="reg_password_2" required> <br>
+
+    <div class="button-s">
+        <button type="sumbit" id="sumbit"> REGISTER </button>
+    </div>
+
+</form>
+
+</div>
+
+{% endblock %} 

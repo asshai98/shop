@@ -1,0 +1,88 @@
+{% extends "_global/index.html" %}
+{% block main %}
+    <div class="export"> 
+        <span> To export data in JSON format click here: </span>
+        <a href = "/admin/profile/viewItemDetails/{{dateFrom}}/{{dateTo}}/json/" target="_blank" id="export-link"> EXPORT </a>
+    </div><br>
+        <div class="quarter-header">
+            <span class="date-from"> Date from: </span>
+            <select id="date-from" onchange="dateChanged()">
+                {%for date in dates %}
+                <option {% if dateFrom == date.date %} selected {% endif %} value="{{date.date}}"> {{date.date}} </option>
+                {% endfor %}
+            </select>
+            <span class="date-to"> Date to: </span>
+            <select id="date-to" onchange="dateChanged()">
+                {%for date in dates %}
+                <option {% if dateTo == date.date %} selected {% endif %} value="{{date.date}}"> {{date.date}} </option>
+                {% endfor %}
+            </select>
+        </div><br><br><br>
+    <canvas id="myChart"></canvas><br><br>
+    <table class="buyer-view">
+        <tr>
+            <th>Name</th>
+            <th>Total</th>
+            <th>Amount</th>
+        </tr>
+        {% for row in reports %}
+        <tr>
+            <td id="item-name"> {{row.name}} </td>
+            <td id="total-price"> {{row.total}} </td>
+            <td id="item-count"> {{row.count}} </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+<script src="/assets/Chart.js/Chart.bundle.min.js"></script>
+<link rel="stylesheet" href="/assets/Chart.js/Chart.min.css">
+<script>
+    
+    var randomScalingFactor = function() {
+			return Math.round(Math.random() * 100);
+		};
+
+		var config = {
+			type: 'pie',
+			data: {
+				datasets: [{
+					data: JSON.parse('{{data|raw}}'),
+
+					backgroundColor: [
+						"#F77",
+						"#7F7",
+						"#77F",
+						"#FF7",
+						"#7FF",
+                        "#F7F",
+						"#07F",
+						"#F07",
+						"#7F0",
+						"#707",
+					],
+					label: 'Sales Per Month'
+				}],
+				labels: JSON.parse('{{labels|raw}}')
+			},
+			options: {
+                legend: {
+                    position: 'right',
+                },
+				responsive: true
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('myChart').getContext('2d');
+			window.myPie = new Chart(ctx, config);
+		};
+
+	    function dateChanged(){
+            let dateFrom = document.querySelector("#date-from option:checked").value;
+            let dateTo   = document.querySelector("#date-to   option:checked").value;
+
+            window.location="/admin/profile/viewItemDetails/" + dateFrom + '/' + dateTo + '/';
+		}
+	</script>
+{% endblock %} 
